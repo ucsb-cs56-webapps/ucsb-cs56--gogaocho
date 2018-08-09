@@ -1,2 +1,2 @@
-# ucsb-cs56--gogaocho
-A web app that arrange your courses
+# ucsb-cs56--GoGaucho
+A web app that arrange your courses automatically.
