@@ -21,7 +21,7 @@ import static spark.Spark.post;
 
 public class GoGauchoMain {
 
-	public static final String CLASSNAME="GoGaucho";
+	public static final String CLASSNAME="GoGauchoMain";
 	
 	public static final Logger log = Logger.getLogger(CLASSNAME);
 

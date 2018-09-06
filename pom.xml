@@ -9,14 +9,14 @@
     <!-- project coordinates - values which uniquely identify this project -->
 
   <groupId>edu.ucsb.cs56.GoGaucho</groupId>
-  <artifactId>spark-mustache-demo-02</artifactId>
+  <artifactId>GoGauchoMain</artifactId>
   <version>1.0</version>
-  <url>https://ucsb-cs56-pconrad.github.io/sparkjava-mustache-example</url>
+  <url>https://ucsb-cs56-webapps.github.io/ucsb-cs56-gogaucho</url>
   
   <!-- configure what mvn package produces -->
   
   <packaging>jar</packaging>
-  <name>sparkjava-mustache-example-02</name>
+  <name>GoGauchoMain</name>
   
   <!-- what version of Java should we use and what encoding for files? -->
   <properties>
