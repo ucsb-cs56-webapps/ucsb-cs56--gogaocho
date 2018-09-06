@@ -30,6 +30,12 @@
   <!-- what other software does our project depend on (third-party JARs, etc.) -->
   <dependencies>
 
+    <!-- Cloud Firestore -->
+    <dependency>
+      <groupId>com.google.firebase</groupId>
+      <artifactId>firebase-admin</artifactId>
+      <version>6.2.0</version>
+    </dependency>
     
     <!-- https://mvnrepository.com/artifact/com.sparkjava/spark-template-mustache -->
     <dependency>
