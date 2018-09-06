@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.GoGaucho;
+package edu.ucsb.cs56.gogaucho;
 
 import static spark.Spark.port;
 
@@ -13,11 +13,6 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
-
-/**
- * Simple example of using Mustache Templates
- *
- */
 
 public class GoGauchoMain {
 
