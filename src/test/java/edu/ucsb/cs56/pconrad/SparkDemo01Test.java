@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.gogaucho;
+package edu.ucsb.cs56.pconrad;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
