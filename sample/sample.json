@@ -3,7 +3,15 @@
 //var courseInfo = JSON.parse(courseJson); 
 
 [{
-	"course": {
+	"courses": {
+		"00001" :{  //the UID of the course which can get from GOLD and search the information 
+			      from database
+			"name": "CS56"
+			"time": "2018Summer"
+			"prof": "Phill Conrad"
+		}
+		"00002":{
+		}
 	}
 }]
 
