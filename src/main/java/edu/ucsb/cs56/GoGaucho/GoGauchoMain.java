@@ -1,23 +1,23 @@
 package edu.ucsb.cs56.gogaucho;
 
 import static spark.Spark.port;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.delete;
 
 import org.apache.log4j.Logger;
 
-import java.util.*;
-import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
+import java.io.FileInputStream;
 
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
-
 import com.google.api.core.ApiFuture;
-
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
@@ -47,8 +47,15 @@ public class GoGauchoMain {
 
 		get("/profile/user", (rq, rs) -> new ModelAndView(map, "profile.mustache"), new MustacheTemplateEngine());
 
-		post("/course/menu", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
-		
+		get("/course/menu", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
+
+		delete("/db/delete", ((request, response) -> {
+		    return "stub";
+        }));
+
+		post("/db/post", ((request, response) -> {
+            return request.queryParams();
+        }));
     }
 
     static void tryDB() throws Exception {
