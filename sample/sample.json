@@ -1,0 +1,9 @@
+
+//var courseJson = {name: "CS56", quarter: "Summer", year: "2018", prof: "Pill Conrad"};
+//var courseInfo = JSON.parse(courseJson); 
+
+[{
+	"course": {
+	}
+}]
+
