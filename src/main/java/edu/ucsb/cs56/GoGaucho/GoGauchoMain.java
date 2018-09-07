@@ -1,90 +1,47 @@
-package edu.ucsb.cs56.gogaucho;
+package edu.ucsb.cs56.GoGaucho;
 
 import static spark.Spark.port;
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.delete;
 
 import org.apache.log4j.Logger;
 
-import java.util.Iterator;
-import java.util.Map;
+
 import java.util.HashMap;
-import java.io.FileInputStream;
+import java.util.Map;
 
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.*;
-import com.google.api.core.ApiFuture;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.cloud.FirestoreClient;
+import static spark.Spark.get;
+import static spark.Spark.post;
+
+/**
+ * Simple example of using Mustache Templates
+ *
+ */
 
 public class GoGauchoMain {
 
-	public static final String CLASSNAME="GoGauchoMain";
-	public static Firestore db;
+	public static final String CLASSNAME="GoGaucho";
+	
 	public static final Logger log = Logger.getLogger(CLASSNAME);
 
-	public static void main(String[] args) throws Exception {
-
-        db = setupFirebase();
+	public static void main(String[] args) {
 
         port(getHerokuAssignedPort());
 		
 		Map map = new HashMap();
         map.put("name", "Sam");
 		
-
-        get("/tryDB", (rq, rs) -> {
-            tryDB();
-            return "success";
-        });
-
+        // hello.mustache file is in resources/templates directory
         get("/", (rq, rs) -> new ModelAndView(map, "intro.mustache"), new MustacheTemplateEngine());
 
-		get("/profile/user", (rq, rs) -> new ModelAndView(map, "profile.mustache"), new MustacheTemplateEngine());
+		get("/personalinfo", (rq, rs) -> new ModelAndView(map, "personalinfo.mustache"), new MustacheTemplateEngine());
 
-		get("/course/menu", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
+		get("/course", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
 
-		delete("/db/delete", ((request, response) -> {
-		    return "stub";
-        }));
 
-		post("/db/post", ((request, response) -> {
-            return request.queryParams();
-        }));
-    }
-
-    static void tryDB() throws Exception {
-        DocumentReference docRef = db.collection("users").document("alovelace");
-        // Add document data  with id "alovelace" using a hashmap
-        Map<String, Object> data = new HashMap<>();
-        data.put("first", "Ada");
-        data.put("last", "Lovelace");
-        data.put("born", 1815);
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
-        // ...
-        // result.get() blocks on response
-        System.out.println("Update time : " + result.get().getUpdateTime());
-    }
-    
-    static Firestore setupFirebase() throws Exception {
-
-        FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/gogaucho/ucsb-cs56-gogaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");
-
-        FirebaseOptions options = new FirebaseOptions.Builder()
-            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .setDatabaseUrl("https://ucsb-cs56-gogaucho.firebaseio.com")
-            .build();
-
-        FirebaseApp.initializeApp(options);
-        
-        return FirestoreClient.getFirestore();
-    }
+		
+	}
 	
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
@@ -93,4 +50,6 @@ public class GoGauchoMain {
         }
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
+
+	
 }

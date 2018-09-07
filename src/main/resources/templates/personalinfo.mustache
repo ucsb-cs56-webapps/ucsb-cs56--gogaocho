@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+{{> head }}
+<body>
+ {{> nav }}
+ <h1>Course Menu</h1>
+ <p>
+ 	<h1>Exchange Your Books Now!</h1>
+ </p>
+    <select id="Grade">
+	  <option value ="Freshmen">Freshmen</option>
+	</select>
+	<select id="Major">
+	  <option value ="CS">Computer Science</option>
+	</select>
+
+    <button onclick="Scheduling();">Scheduling!</button>
+ 
+<script>
+    function Scheduling(){
+      $.post('/schedule', {
+        grade: $('#Grade').val(),
+        major: $('#Major').val()
+      }).then(window.location.href = "/course");
+  	};
+  </script>
+{{> bootstrap-from-cdn-body }}
+</body>
+</html>

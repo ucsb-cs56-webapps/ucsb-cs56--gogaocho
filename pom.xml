@@ -8,34 +8,28 @@
 
     <!-- project coordinates - values which uniquely identify this project -->
 
-  <groupId>edu.ucsb.cs56.gogaucho</groupId>
-  <artifactId>GoGauchoMain</artifactId>
+  <groupId>edu.ucsb.cs56.GoGaucho</groupId>
+  <artifactId>spark-mustache-demo-02</artifactId>
   <version>1.0</version>
-  <url>https://ucsb-cs56-webapps.github.io/ucsb-cs56-gogaucho</url>
+  <url>https://ucsb-cs56-pconrad.github.io/sparkjava-mustache-example</url>
   
   <!-- configure what mvn package produces -->
   
   <packaging>jar</packaging>
-  <name>GoGauchoMain</name>
+  <name>sparkjava-mustache-example-02</name>
   
   <!-- what version of Java should we use and what encoding for files? -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <userDefinedMainClass>edu.ucsb.cs56.gogaucho.GoGauchoMain</userDefinedMainClass>
+    <userDefinedMainClass>edu.ucsb.cs56.GoGaucho.GoGauchoMain</userDefinedMainClass>
     <userDefinedHerokuApp>TBD</userDefinedHerokuApp>
   </properties>
 
   <!-- what other software does our project depend on (third-party JARs, etc.) -->
   <dependencies>
 
-    <!-- Cloud Firestore -->
-    <dependency>
-      <groupId>com.google.firebase</groupId>
-      <artifactId>firebase-admin</artifactId>
-      <version>6.2.0</version>
-    </dependency>
     
     <!-- https://mvnrepository.com/artifact/com.sparkjava/spark-template-mustache -->
     <dependency>
