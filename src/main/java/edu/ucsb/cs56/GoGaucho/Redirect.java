@@ -6,3 +6,5 @@ public class redirectToNewPages (String routes) {
             return null;
         });
 }
+
+

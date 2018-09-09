@@ -1,17 +1,11 @@
 
-//var courseJson = {name: "CS56", quarter: "Summer", year: "2018", prof: "Pill Conrad"};
-//var courseInfo = JSON.parse(courseJson); 
-
 [{
 	"courses": {
-		"00001" :{  //the UID of the course which can get from GOLD and search the information 
-			      from database
-			"name": "CS56"
-			"time": "2018Summer"
+			"name": "CS56",
+			"time": "2018Summer",
 			"prof": "Phill Conrad"
-		}
+		},
 		"00002":{
 		}
-	}
 }]
 
