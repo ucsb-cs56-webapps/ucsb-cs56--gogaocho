@@ -5,6 +5,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 import com.google.api.core.ApiFutures;
+import com.google.gson.GsonBuilder;
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -23,8 +24,8 @@ import com.google.gson.Gson;
 
 public class GoGauchoMain {
 
-	public static final String CLASSNAME="GoGauchoMain";
-	public static Firestore db;
+	private static final String CLASSNAME="GoGauchoMain";
+	private static Firestore db;
 	public static final Logger log = Logger.getLogger(CLASSNAME);
 
 	public static void main(String[] args) throws Exception {
@@ -35,68 +36,88 @@ public class GoGauchoMain {
 		
 		Map map = new HashMap();
         map.put("name", "Sam");
-		
 
-        get("/tryDB", (rq, rs) -> {
-            tryDB();
-            return "success";
-        });
-
+        // Front end template render
         get("/", (rq, rs) -> new ModelAndView(map, "intro.mustache"), new MustacheTemplateEngine());
 
 		get("/profile/user", (rq, rs) -> new ModelAndView(map, "profile.mustache"), new MustacheTemplateEngine());
 
 		get("/course/menu", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
 
-		post("/api/v1/course", ((request, response) -> {
-		    if (request.queryParams().contains("Major") && request.queryParams().contains("Grade")){
-		        response.status(200);
-                String major = request.queryParams("Major");
-                String year = request.queryParams(("Grade"));
-            } else {
-                response.status(400);
-                return "Bad parameter";
-            }
+		/*
+		Get all course from DB:
+		    Method: POST
+		    Param:  Major, Grade
+		    Return: 400 if param missing
+		            200 if success
+		 */
+		post("/api/v1/getcourse", ((request, response) -> {
+            response.type("application/json");
+            response.status(400);
+		    if (!request.queryParams().contains("Major") || !request.queryParams().contains("Grade"))
+                return new Gson().toJson("Missing parameter");
+
+            response.status(200);
             //asynchronously retrieve all documents
-            ApiFuture<QuerySnapshot> c = db.collection("courses").document("20181")
-                    .collection("all").get();
+            ApiFuture<QuerySnapshot> c = db.collection("courses").document("20181").collection("all").get();
             List<QueryDocumentSnapshot> documents = c.get().getDocuments();
+
             ArrayList<Courses> courseArr = new ArrayList<>();
             for (QueryDocumentSnapshot document : documents) {
                 courseArr.add(document.toObject(Courses.class));
             }
-            response.type("application/json");
+
             return new Gson().toJson(courseArr);
         }));
 
-		post("/api/v1/data", (request, response) -> {
-		    if (request.queryParams().contains("courseName") && request.queryParams().contains("prerequisite") &&
-            request.queryParams().contains("time") && request.queryParams().contains("date") &&
-            request.queryParams().contains("unit") && request.queryParams().contains("uid")) {
-		        response.status(200);
-		        Courses c = new Courses(request.queryParams("courseName"), request.queryParams("prerequisite"),
-                        request.queryParams("time"), Integer.parseInt(request.queryParams("date")),
-                        Integer.parseInt(request.queryParams("unit")));
-                DocumentReference docRef = db.collection("courses").document("20181")
-                        .collection("all").document(request.queryParams("uid"));
-                docRef.set(c);
-                return c;
-            } else {
-		        response.status(400);
-		        return "Bad parameter";
-            }
-        });
-    }
+		/*
+		Post data to DB (internal testing only):
+		    Method: POST
+		    Param:  courseName, prerequisite, time, date, unit, uid
+		    Return: 400 if param missing
+		            200 if success
+		 */
+		post("/api/v1/postdata", (request, response) -> {
+            response.type("application/json");
+            response.status(400);
+		    if (!request.queryParams().contains("courseName") || !request.queryParams().contains("prerequisite") ||
+            !request.queryParams().contains("time") || !request.queryParams().contains("date") ||
+            !request.queryParams().contains("unit") || !request.queryParams().contains("uid"))
+                return "Missing parameter";
 
-    private static void tryDB() throws Exception {
-	    String courseUid = "00000";
-        DocumentReference docRef = db.collection("courses").document("20181")
-                .collection("all").document(courseUid);
-        Courses c = new Courses("CS8", "N/A", "N/A", 24, 4);
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(c);
-        // result.get() blocks on response
-        System.out.println("Update time : " + result.get().getUpdateTime());
+            response.status(200);
+            Courses c = new Courses(request.queryParams("courseName"), request.queryParams("prerequisite"),
+                    request.queryParams("time"), Integer.parseInt(request.queryParams("date")),
+                    Integer.parseInt(request.queryParams("unit")));
+            DocumentReference docRef = db.collection("courses").document("20181")
+                    .collection("all").document(request.queryParams("uid"));
+            docRef.set(c);
+            return c;
+        });
+
+		/*
+		Login:
+            Method: POST
+            Param:  userName, password
+            Return: 400 if parameter missing
+                    401 if login failed, ie userName or password incorrect
+                    200 if login success
+		 */
+		post("/api/v1/login", ((request, response) -> {
+		    response.type("application/json");
+            response.status(400);
+		    if (!request.queryParams().contains("userName") || !request.queryParams().contains("password"))
+                return new Gson().toJson("Missing parameter");
+            response.status(401);
+            DocumentReference docRef = db.collection("users").document(request.queryParams("userName"));
+            DocumentSnapshot document = docRef.get().get();
+		    if (!document.exists())
+		        return new Gson().toJson("Invalid user name or not registered");
+            if (!document.get("password").equals(request.queryParams("password")))
+                return new Gson().toJson("Incorrect password");
+            response.status(200);
+            return new Gson().toJson("Login success");
+        }));
     }
     
     private static Firestore setupFirebase() throws Exception {
