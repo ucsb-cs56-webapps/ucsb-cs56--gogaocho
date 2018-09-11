@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html>
 {{> head }}
+
+<style>
+.shortselect{
+  background:#fafdfe;
+  height:28px;
+  width:180px;
+  line-height:28px;
+  border:1px solid #9bc0dd;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  border-radius:2px;
+}
+
+.select {
+text-align: center;
+text-align-last: center;
+}
+</style>
+
 <body>
  {{> nav }}
- <h1>Course Menu</h1>
- <p>
- 	<h1>Exchange Your Books Now!</h1>
- </p>
-    <select id="Grade">
-	  <option value ="Freshmen">Freshmen</option>
-	</select>
-	<select id="Major">
-	  <option value ="CS">Computer Science</option>
-	</select>
+
+ <h1 align="center">Course Scheduling</h1>
+    <select id="Grade" class="shortselect">
+	     <option value ="Freshmen">Freshmen</option>
+	   </select>
+
+  	<select id="Major" class="shortselect">
+  	  <option value ="CS">Computer Science</option>
+  	</select>
 
     <button onclick="Scheduling();">Scheduling!</button>
  
@@ -24,6 +42,9 @@
       }).then(window.location.href = "/course");
   	};
   </script>
+
+
+
 {{> bootstrap-from-cdn-body }}
 </body>
 </html>
