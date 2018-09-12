@@ -3,16 +3,13 @@ package edu.ucsb.cs56.gogaucho;
 import static spark.Spark.port;
 import static spark.Spark.get;
 import static spark.Spark.post;
+import spark.ModelAndView;
+import spark.template.mustache.MustacheTemplateEngine;
 
-import com.google.api.core.ApiFutures;
-import com.google.gson.GsonBuilder;
 import org.apache.log4j.Logger;
 
 import java.util.*;
 import java.io.FileInputStream;
-
-import spark.ModelAndView;
-import spark.template.mustache.MustacheTemplateEngine;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
@@ -51,7 +48,7 @@ public class GoGauchoMain {
             Return: 400 if param missing
                     200 if success
          */
-        post("/api/v1/getcourse", ((request, response) -> {
+        post("/api/v1/getcourse", (request, response) -> {
             response.type("application/json");
             response.status(400);
             if (!request.queryParams().contains("Major") || !request.queryParams().contains("Grade"))
@@ -68,7 +65,7 @@ public class GoGauchoMain {
             }
 
             return new Gson().toJson(courseArr);
-        }));
+        });
 
         /*
         Post data to DB (internal testing only):
@@ -103,7 +100,7 @@ public class GoGauchoMain {
                     401 if login failed, ie userName or password incorrect
                     200 if login success
          */
-        post("/api/v1/login", ((request, response) -> {
+        post("/api/v1/login", (request, response) -> {
             response.type("application/json");
             response.status(400);
             if (!request.queryParams().contains("userName") || !request.queryParams().contains("password"))
@@ -117,7 +114,7 @@ public class GoGauchoMain {
                 return new Gson().toJson("Incorrect password");
             response.status(200);
             return new Gson().toJson("Login success");
-        }));
+        });
     }
     
     private static Firestore setupFirebase() throws Exception {

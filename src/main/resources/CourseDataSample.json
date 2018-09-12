@@ -1,0 +1,23 @@
+[
+	{
+		"courseName": "CS8",
+		"prerequisite": "N/A",
+		"time": "N/A",
+		"date": 24,
+		"unit": 4
+	},
+	{
+		"courseName": "CS16",
+		"prerequisite": "CS8",
+		"time": "N/A",
+		"date": 135,
+		"unit": 4
+	},
+	{
+		"courseName": "CS24",
+		"prerequisite": "CS16",
+		"time": "N/A",
+		"date": 24,
+		"unit": 4
+	}
+]
