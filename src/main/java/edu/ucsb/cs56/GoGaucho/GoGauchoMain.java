@@ -120,11 +120,11 @@ public class GoGauchoMain {
     
     private static Firestore setupFirebase() throws Exception {
 
-        FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/gogaucho/ucsb-cs56-gogaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");
+        FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/GoGaucho/ucsb-cs56-GoGaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
             .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .setDatabaseUrl("https://ucsb-cs56-gogaucho.firebaseio.com")
+            .setDatabaseUrl("https://ucsb-cs56-GoGaucho.firebaseio.com")
             .build();
 
         FirebaseApp.initializeApp(options);
