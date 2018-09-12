@@ -8,7 +8,7 @@
 
     <!-- project coordinates - values which uniquely identify this project -->
 
-    <groupId>edu.ucsb.cs56.gogaucho</groupId>
+    <groupId>edu.ucsb.cs56.GoGaucho</groupId>
     <artifactId>GoGauchoMain</artifactId>
     <version>1.0</version>
     <url>https://ucsb-cs56-webapps.github.io/ucsb-cs56-gogaucho</url>
@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <userDefinedMainClass>edu.ucsb.cs56.gogaucho.GoGauchoMain</userDefinedMainClass>
+        <userDefinedMainClass>edu.ucsb.cs56.GoGaucho.GoGauchoMain</userDefinedMainClass>
         <userDefinedHerokuApp>ucsb-cs56-gogaucho</userDefinedHerokuApp>
     </properties>
 

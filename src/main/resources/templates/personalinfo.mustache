@@ -2,6 +2,21 @@
 <html>
 {{> head }}
 
+<script>
+    function Scheduling(){
+      console.log("did run Scheduling")
+      $.post('/api/v1/getcourse',
+      {
+        Grade: $('#Grade').val(),
+        Major: $('#Major').val()
+      },
+      function (data) {
+        var response = jQuery.parseJSON(data);
+        alert(response);
+      });
+  	};
+  </script>
+
 <style>
 .shortselect{
   background:#fafdfe;
@@ -34,14 +49,7 @@ text-align-last: center;
 
     <button onclick="Scheduling();">Scheduling!</button>
  
-<script>
-    function Scheduling(){
-      $.post('/schedule', {
-        grade: $('#Grade').val(),
-        major: $('#Major').val()
-      }).then(window.location.href = "/course");
-  	};
-  </script>
+
 
 
 
