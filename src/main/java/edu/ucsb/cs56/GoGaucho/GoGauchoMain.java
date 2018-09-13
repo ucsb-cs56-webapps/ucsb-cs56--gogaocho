@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.gogaucho;
+package edu.ucsb.cs56.GoGaucho;
 
 import static spark.Spark.port;
 import static spark.Spark.get;
@@ -37,7 +37,7 @@ public class GoGauchoMain {
         // Front end template render
         get("/", (rq, rs) -> new ModelAndView(map, "intro.mustache"), new MustacheTemplateEngine());
 
-        get("/profile/user", (rq, rs) -> new ModelAndView(map, "profile.mustache"), new MustacheTemplateEngine());
+        get("/personalinfo", (rq, rs) -> new ModelAndView(map, "/personalinfo.mustache"), new MustacheTemplateEngine());
 
         get("/course/menu", (rq, rs) -> new ModelAndView(map, "course.mustache"), new MustacheTemplateEngine());
 
@@ -49,6 +49,7 @@ public class GoGauchoMain {
                     200 if success
          */
         post("/api/v1/getcourse", (request, response) -> {
+            System.out.print("getcourse is called with" + request.queryParams());
             response.type("application/json");
             response.status(400);
             if (!request.queryParams().contains("Major") || !request.queryParams().contains("Grade"))
@@ -119,11 +120,11 @@ public class GoGauchoMain {
     
     private static Firestore setupFirebase() throws Exception {
 
-        FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/gogaucho/ucsb-cs56-gogaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");
+        FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/GoGaucho/ucsb-cs56-GoGaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
             .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .setDatabaseUrl("https://ucsb-cs56-gogaucho.firebaseio.com")
+            .setDatabaseUrl("https://ucsb-cs56-GoGaucho.firebaseio.com")
             .build();
 
         FirebaseApp.initializeApp(options);

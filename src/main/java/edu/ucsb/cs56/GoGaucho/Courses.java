@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.gogaucho;
+package edu.ucsb.cs56.GoGaucho;
 
 import lombok.Data;
 

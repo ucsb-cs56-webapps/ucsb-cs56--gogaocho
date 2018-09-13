@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html>
 {{> head }}
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    function Scheduling(){
+      console.log("did run Scheduling")
+      $.post('/api/v1/getcourse',
+      {
+        Grade: $('#Grade').val(),
+        Major: $('#Major').val()
+      },
+      function (response) {
+        for (var i = 0; i < response.length; i++) {
+          var c = "c" + (i + 1);
+          var u = "u" + (i + 1);
+          var p = "p" + (i + 1);
+          var t = "t" + (i + 1);
+          var d = "d" + (i + 1);
+          document.getElementById(c).innerHTML=response[i].courseName;
+          document.getElementById(p).innerHTML=response[i].prerequisite;
+          document.getElementById(t).innerHTML=response[i].time;
+          document.getElementById(d).innerHTML=response[i].date;
+          document.getElementById(u).innerHTML=response[i].unit;
+        }
+      });
+  	};
+  </script>
 
 <style>
 .shortselect{
@@ -33,15 +58,58 @@ text-align-last: center;
   	</select>
 
     <button onclick="Scheduling();">Scheduling!</button>
- 
-<script>
-    function Scheduling(){
-      $.post('/schedule', {
-        grade: $('#Grade').val(),
-        major: $('#Major').val()
-      }).then(window.location.href = "/course");
-  	};
-  </script>
+    <h1>Courses you can choose:</h1>
+
+    <div>
+      <span style="padding-left:50px;">Course:</span>
+      <span style="padding-left:150px;">Prerequisite:</span>
+      <span style="padding-left:150px;">Time:</span>
+      <span style="padding-left:150px;">Date:</span>
+      <span style="padding-left:150px;">Unit:</span>
+    </div>
+
+    <div>
+      <span id="c1" style="padding-left:50px;"></span>
+      <span id="p1" style="padding-left:150px;"></span>
+      <span id="t1" style="padding-left:150px;"></span>
+      <span id="d1" style="padding-left:150px;"></span>
+      <span id="u1" style="padding-left:150px;"></span>
+     </div>
+
+
+     <div>
+      <span id="c2" style="padding-left:50px;"></span>
+      <span id="p2" style="padding-left:150px;"></span>
+      <span id="t2" style="padding-left:150px;"></span>
+      <span id="d2" style="padding-left:150px;"></span>
+      <span id="u2" style="padding-left:150px;"></span>
+     </div>
+
+
+     <div>
+      <span id="c3" style="padding-left:50px;"></span>
+      <span id="p3" style="padding-left:150px;"></span>
+      <span id="t3" style="padding-left:150px;"></span>
+      <span id="d3" style="padding-left:150px;"></span>
+      <span id="u3" style="padding-left:150px;"></span>
+     </div>
+
+     <div>
+      <span id="c4" style="padding-left:50px;"></span>
+      <span id="p4" style="padding-left:150px;"></span>
+      <span id="t4" style="padding-left:150px;"></span>
+      <span id="d4" style="padding-left:150px;"></span>
+      <span id="u4" style="padding-left:150px;"></span>
+     </div>
+
+     <div>
+      <span id="c5" style="padding-left:50px;"></span>
+      <span id="p5" style="padding-left:150px;"></span>
+      <span id="t5" style="padding-left:150px;"></span>
+      <span id="d5" style="padding-left:150px;"></span>
+      <span id="u5" style="padding-left:150px;"></span>
+     </div>
+
 
 
 
