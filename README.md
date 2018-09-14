@@ -25,15 +25,17 @@ In dependency ADD:
 
 ```
 
-5. Create and set up new service account on [GCP Console](https://console.cloud.google.com/)
-Use the same email address that you used for creating the new project on the Firebase. You should be able to find the exsiting project.
+5. Set up the Private Key
 
+* Go back to your firebase project home page
 * In the left nav, click **Profect Settings** and then **Service accounts**
 * Under the Firebase Admin SDK, find Generate Private Key (at the bottom)
 * Generate and it will automatically downloaded
 * Put the json file inside project repo.
 * Inside GoGauchoMain.java, find the line (originally line 123)
+
 ``FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/GoGaucho/ucsb-cs56-GoGaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");``
+
 and change the String in the FileInputStream to your json file path
 * Add that json file into .gitignore
 
