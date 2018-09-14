@@ -41,9 +41,10 @@ It contains private and sensitive information and you don't want other people to
 
 * create a setup.sh file to set the environment variable FIREBASE_JSON:
 
+```
 export FIREBASE_JSON=`cat credentials.json`
-
-To add the variable FIREBASE_JSON inside Heroku, we use the following command.
+```
+Run setup.sh first. Next, to add the variable FIREBASE_JSON inside Heroku, we use the following command.
 ```
 heroku config:set FIREBASE_JSON=`cat credentials.json`
 ```
