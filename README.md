@@ -1,5 +1,6 @@
 # ucsb-cs56-gogaucho
 A web app that arrange your courses automatically.
+Link: https://ucsb-cs56-gogaucho.herokuapp.com/
 
 ## Story Map
 **Trello Link:** https://trello.com/b/Xxvpwo2c/gogaucho-schedule-generator
