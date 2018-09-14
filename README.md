@@ -42,8 +42,6 @@ and change the String in the FileInputStream to your json file path
 You do not want to upload the credentials.json file into github repo.
 It contains private and sensitive information and you don't want other people to see it. 
 
-## M18 final remarks
-
 
 ## Story Map
 **Trello Link:** https://trello.com/b/Xxvpwo2c/gogaucho-schedule-generator
