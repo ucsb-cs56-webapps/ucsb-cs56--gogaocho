@@ -54,15 +54,35 @@ heroku config:set FIREBASE_JSON=`cat credentials.json`
 ![Snapshot](cs56/m18/story.png)
 
 ## Run Schedule Algorithm
-1.First in main create a vector of 3-elements tuple, each element are courses' starting time, ending time, and weight
+1.First in main create a vector of 3-elements tuple, each element are courses' starting time, ending time, and weight.
+ Example:
+ 
+ ```
+ //Sample run with small set
+	
+int main(){
+	vector<tuple<int, int, int>> v;
+	v.push_back(make_tuple(1,5,10));
+	v.push_back(make_tuple(2,5,1));
+	v.push_back(make_tuple(3,5,2));
+	v.push_back(make_tuple(6,9,5));
+	v.push_back(make_tuple(4,6,19));
+	SchedulePLan(v);
+	
+}
+  ```
+
+
 2.Then compile with version 11 or above g++
 ```
  g++ -std=c++11 schedule_plan.cpp -o schedule
 ```
 
+
 3.Then run with ``` ./schedule ```
   It will output the optimal schedule and the max payoff
-  Example run from main"
+  Example run from main
+  
  ``` 
   Max Payoff: 24
       4 6 19
