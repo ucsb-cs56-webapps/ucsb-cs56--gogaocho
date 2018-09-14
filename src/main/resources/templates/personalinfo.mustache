@@ -25,6 +25,17 @@
         }
       });
   	};
+    function Login(){
+      console.log("did run Logging in")
+      $.post('/api/v1/login',
+      {
+        userName: $('#userName').val(),
+        password: $('#password').val()
+      },
+      function (response) {
+        alert(response);
+      });
+    };
   </script>
 
 <style>
@@ -70,34 +81,34 @@ text-align-last: center;
 
     <div>
       <span id="c1" style="padding-left:50px;"></span>
-      <span id="p1" style="padding-left:150px;"></span>
-      <span id="t1" style="padding-left:150px;"></span>
-      <span id="d1" style="padding-left:150px;"></span>
-      <span id="u1" style="padding-left:150px;"></span>
+      <span id="p1" style="padding-left:172px;"></span>
+      <span id="t1" style="padding-left:205px;"></span>
+      <span id="d1" style="padding-left:160px;"></span>
+      <span id="u1" style="padding-left:168px;"></span>
      </div>
 
 
      <div>
       <span id="c2" style="padding-left:50px;"></span>
-      <span id="p2" style="padding-left:150px;"></span>
-      <span id="t2" style="padding-left:150px;"></span>
-      <span id="d2" style="padding-left:150px;"></span>
-      <span id="u2" style="padding-left:150px;"></span>
+      <span id="p2" style="padding-left:164px;"></span>
+      <span id="t2" style="padding-left:202px;"></span>
+      <span id="d2" style="padding-left:158px;"></span>
+      <span id="u2" style="padding-left:164px;"></span>
      </div>
 
 
      <div>
       <span id="c3" style="padding-left:50px;"></span>
-      <span id="p3" style="padding-left:150px;"></span>
-      <span id="t3" style="padding-left:150px;"></span>
-      <span id="d3" style="padding-left:150px;"></span>
-      <span id="u3" style="padding-left:150px;"></span>
+      <span id="p3" style="padding-left:164px;"></span>
+      <span id="t3" style="padding-left:194px;"></span>
+      <span id="d3" style="padding-left:160px;"></span>
+      <span id="u3" style="padding-left:171px;"></span>
      </div>
 
      <div>
       <span id="c4" style="padding-left:50px;"></span>
       <span id="p4" style="padding-left:150px;"></span>
-      <span id="t4" style="padding-left:150px;"></span>
+      <span id="t4" style="padding-left:173px;"></span>
       <span id="d4" style="padding-left:150px;"></span>
       <span id="u4" style="padding-left:150px;"></span>
      </div>
