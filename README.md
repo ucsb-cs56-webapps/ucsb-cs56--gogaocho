@@ -27,8 +27,7 @@ In dependency ADD:
 
 ```
 
-## Initialize Cloud Firestore
-1.Create and set up new service account on [GCP Console](https://console.cloud.google.com/)
+4.Create and set up new service account on [GCP Console](https://console.cloud.google.com/)
 Use the same email address that you used for creating the new project on the Firebase. You should be able to find the exsiting project.
 
 * open **IAM & Admin** page in the GCP Console, select your porject.
@@ -40,7 +39,7 @@ Use the same email address that you used for creating the new project on the Fir
 You do not want to upload the credentials.json file into github repo.
 It contains private and sensitive information and you don't want other people to see it. 
 
-2. Add FIREBASE_JSON variable
+5. Add FIREBASE_JSON variable
 
 * create a setup.sh file to set the environment variable FIREBASE_JSON:
 
