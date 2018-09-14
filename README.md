@@ -90,3 +90,9 @@ int main(){
 
 - Divide the work to each team members
 - Contribute as much as possible
+
+## M18 Final Remarks
+- We successfully connect front end and back end to pass personal information to database and do "Searching". Next set of students can add "choose courses" feature and do post with our back end api and get final decided course list.
+- We add login feature in both front end in nav.mustache and back end in main java, but some unknown issue happened so it doesn't work well. Next set of students can fix it and make it work.
+- We do really "hard core" css beautification, so if next set of students are willing to do that, they can learn some related knowledge from "w3school" or other html tutoring web. 
+- We only finish Freshmen CS Students' scheduling, but adding other major and grade should be easy because we have written the algorithm. Just add more course information to firebase and add corresponding select button in "personalinfo.mustache" to expand users.
