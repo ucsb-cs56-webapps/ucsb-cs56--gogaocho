@@ -40,7 +40,22 @@ and change the String in the FileInputStream to your json file path
 * Add that json file into .gitignore
 
 You do not want to upload the credentials.json file into github repo.
-It contains private and sensitive information and you don't want other people to see it. 
+It contains private and sensitive information and you don't want other people to see it.
+
+* Change code on line 127 to be your own database link
+
+6. Set up Heroku app
+
+* Set up Heroku git remote
+	git link at heroku setting
+	`` git remote add heorku [link to heroku git]``
+* Change app name in POM, Procfile
+* Use heroku git to deploy instead of mvn
+`` mvn clean compile``
+`` mvn clean package``
+`` git add -f .``
+`` git commit -am "comment"``
+`` git push heorku master``
 
 
 ## Story Map
