@@ -28,26 +28,17 @@ In dependency ADD:
 5. Create and set up new service account on [GCP Console](https://console.cloud.google.com/)
 Use the same email address that you used for creating the new project on the Firebase. You should be able to find the exsiting project.
 
-* open **IAM & Admin** page in the GCP Console, select your porject.
-* In the left nav, click **Service accounts**
-* Click **MORE and dots** (it is on the same row as the email account and located at the far right side) button and then click **Create Key** and select .json. 
-* Download the .json file and rename it into **credentials.json**. 
-* In the .gitignore add credentials.json
+* In the left nav, click **Profect Settings** and then **Service accounts**
+* Under the Firebase Admin SDK, find Generate Private Key (at the bottom)
+* Generate and it will automatically downloaded
+* Put the json file inside project repo.
+* Inside GoGauchoMain.java, find the line (originally line 123)
+``FileInputStream serviceAccount = new FileInputStream("src/main/java/edu/ucsb/cs56/GoGaucho/ucsb-cs56-GoGaucho-firebase-adminsdk-u3h8g-7d394cdd1c.json");``
+and change the String in the FileInputStream to your json file path
+* Add that json file into .gitignore
 
 You do not want to upload the credentials.json file into github repo.
 It contains private and sensitive information and you don't want other people to see it. 
-
-6. Add FIREBASE_JSON variable
-
-* create a setup.sh file to set the environment variable FIREBASE_JSON:
-
-```
-export FIREBASE_JSON=`cat credentials.json`
-```
-Run setup.sh first. Next, to add the variable FIREBASE_JSON inside Heroku, we use the following command.
-```
-heroku config:set FIREBASE_JSON=`cat credentials.json`
-```
 
 ## M18 final remarks
 
