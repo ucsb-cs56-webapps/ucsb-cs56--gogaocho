@@ -48,6 +48,10 @@ Run setup.sh first. Next, to add the variable FIREBASE_JSON inside Heroku, we us
 ```
 heroku config:set FIREBASE_JSON=`cat credentials.json`
 ```
+
+## M18 final remarks
+
+
 ## Story Map
 **Trello Link:** https://trello.com/b/Xxvpwo2c/gogaucho-schedule-generator
 
